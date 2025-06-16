@@ -61,6 +61,7 @@ class HashTable {
 }
 
 const myHashTable = new HashTable(3);
+console.log(myHashTable._hash("grape"))
 
 myHashTable.set("grapes", 1000)
 myHashTable.set("apple", 54)
