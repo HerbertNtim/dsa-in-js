@@ -1,70 +1,15 @@
-class HashTable {
-  constructor(size) {
-    this.data = new Array(size);
-  }
-
-  _hash(key) {
-    let hash = 0;
-    for (let i = 0; i < key.length; i++) {
-      hash = (hash + key.charCodeAt(i) * i) % this.data.length;
+class LinkedList {
+  constructor(value) {
+    this.head = {
+      value: value,
+      next: null
     }
-
-    return hash;
+    this.tail = this.head;
+    this.length = 1
   }
 
-  set(key, value) {
-    let address = this._hash(key);
-    if (!this.data[address]) {
-      this.data[address] = [];
-    }
-    this.data[address].push([key, value]);
-    console.log(this.data);
-    return this.data;
-  }
-
-  get(key) {
-    let address = this._hash(key);
-    const currentBucket = this.data[address];
-    if (currentBucket) {
-      for (let i = 0; i < currentBucket.length; i++) {
-        if (currentBucket[i][0] === key) {
-          return currentBucket[i][1];
-        }
-      }
-    }
-
-    return undefined;
-  }
-
-  keys() {
-    const keysArray = [];
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.data[i]) {
-        keysArray.push(this.data[i][0][0])
-      }
-    }
-
-    return keysArray;
-  }
-
-  values() {
-    const valuesArray = [];
-    for (let i = 0; i < this.data.length; i++) {
-      if (this.data[i]) {
-        valuesArray.push(this.data[i][0][1])
-      }
-    }
-
-    return valuesArray;
-  }
 }
 
-const myTable = new HashTable(3);
+const myList = new LinkedList(10)
 
-myTable.set("grapes", 10000);
-myTable.set("apples", 54);
-
-console.log(myTable);
-console.log(myTable.get("apples"));
-console.log(myTable.keys());
-console.log(myTable.values());
+console.log(myList)
