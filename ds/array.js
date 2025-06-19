@@ -1,76 +1,74 @@
 class MyArray {
   constructor() {
-    this.length = 0, 
-    this.data = {}
+    (this.length = 0), (this.data = {});
   }
 
   get(index) {
-    return this.data[index]
+    return this.data[index];
   }
 
   push(item) {
-    this.data[this.length] = item
-    this.length++
-    return this.data
+    this.data[this.length] = item;
+    this.length++;
+    return this.data;
   }
 
   pop() {
-    let lastItem = this.data[this.length - 1]
-    delete this.data[this.length - 1]
-    this.length--
-    return lastItem
+    let lastItem = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+    return lastItem;
   }
 
   delete(index) {
-    let item = this.data[index]
-    this.shiftItems(index)
-    this.length--
-    return item
+    let item = this.data[index];
+    this.shiftItems(index);
+    this.length--;
+    return item;
   }
 
   shiftItems(index) {
     for (let i = index; i < this.length - 1; i++) {
-      this.data[i] = this.data[i+1]      
+      this.data[i] = this.data[i + 1];
     }
-    delete this.data[this.length -  1]
+    delete this.data[this.length - 1];
   }
 
   shift() {
-    let first = this.data[0]
-    this.delete(0)
-    return first
-  } 
+    let first = this.data[0];
+    this.delete(0);
+    return first;
+  }
 
   unshift(item) {
-  for (let i = this.length; i > 0; i--) {
-    this.data[i] = this.data[i - 1];
+    for (let i = this.length; i > 0; i--) {
+      this.data[i] = this.data[i - 1];
+    }
+    this.data[0] = item;
+    this.length++;
+    return this;
   }
-  this.data[0] = item;
-  this.length++;
-  return this;
-}
 }
 
+const newArray = new MyArray();
+newArray.push("Hi");
+newArray.push("You");
+newArray.push("are");
+newArray.push("nice");
+newArray.push("!");
 
-const newArray = new MyArray()
-newArray.push("Hi")
-newArray.push("You")
-newArray.push("are")
-newArray.push("nice")
-newArray.push("!")
+newArray.pop();
 
-newArray.pop()
+newArray.delete(2);
+newArray.delete(0);
 
-newArray.delete(2)
-newArray.delete(0)
+newArray.push("!You");
+newArray.push("are");
+newArray.push("nice");
+newArray.push("!");
 
-newArray.push("!You")
-newArray.push("are")
-newArray.push("nice")
-newArray.push("!")
+newArray.shift();
+newArray.unshift("Herbert");
 
-newArray.shift()
-newArray.unshift("Herbert")
-
-console.log(newArray)
-console.log(newArray.get(0))
+console.log(newArray);
+console.log(newArray.get(0));
