@@ -1,65 +1,67 @@
 class MyArray {
   constructor() {
-    this.data = {};
-    this.length = 0;
+    this.data = {}
+    this.length = 0
   }
 
   push(item) {
-    this.data[this.length] = item;
-    this.length++;
-    return this;
+    this.data[this.length] = item
+    this.length++
+    return this
   }
 
   pop() {
-    const lastItem = this.data[this.length - 1];
-    delete this.data[this.length - 1];
-    this.length--;
-    return lastItem;
+    let lastItem = this.data[this.length - 1]
+    delete this.data[this.length - 1]
+    this.length--
+    return this
   }
 
   delete(index) {
-    this.shiftItems(index);
-    this.length--;
-    return this;
+    this.shiftItems(index)
+    this.length--
+    return this
   }
 
   shiftItems(index) {
     for (let i = index; i < this.length; i++) {
-      this.data[i] = this.data[i + 1];
+      this.data[i] = this.data[i + 1]
     }
-    delete this.data[this.length - 1];
-  }
-
-  shift() {
-    this.delete(0);
+    delete this.data[this.length - 1]
   }
 
   unshift(item) {
-    for (let i = this.length; i > 0; i--) {
-      this.data[i] = this.data[i - 1];
-    }
+    this.shiftItemsForward();
     this.data[0] = item;
-    this.length++;
+    this.length++
     return this;
   }
+
+  shiftItemsForward() {
+    for (let i = this.length; i > 0; i--) {
+      this.data[i] = this.data[i-1]
+    }
+  }
+
+  shift() {
+    this.delete(0)
+  }
+
 }
 
-const newArray = new MyArray();
+const newArray = new MyArray()
 
-newArray.push("Hi");
-newArray.push("You");
-newArray.push("are");
-newArray.push("too");
-newArray.push("nice");
-newArray.push("!");
+newArray.push('Hi')
+newArray.push('You')
+newArray.push('are')
+newArray.push('too')
+newArray.push('nice')
+newArray.push('!')
 
-newArray.pop();
+newArray.pop()
 
-newArray.delete(2);
+newArray.delete(2)
+newArray.unshift('Hello')
+newArray.shift()
 
-newArray.shift();
-console.log(newArray);
-
-newArray.unshift("Hello");
-
-console.log(newArray);
+console.log(newArray)
