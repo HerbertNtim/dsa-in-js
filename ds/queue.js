@@ -12,13 +12,17 @@ class Queue {
     this.length = 0
   }
 
+  peek() {
+    return this.first;
+  }
+
   enqueue(item) {
     const newNode = new Node(item)
     if(!this.first) {
-      this.first = newNode;
-      this.last = newNode;
+      this.first = newNode
+      this.last =  newNode
     } else {
-      this.last.next = newNode
+      this.last.next = newNode;
       this.last = newNode
     }
 
@@ -27,16 +31,14 @@ class Queue {
   }
 
   dequeue() {
-    if(!this.first) {
+    if(this.length === 0) {
       return null
     } else {
       if(this.first === this.last) {
         this.last = null
-        this.first = null
-      } else {
-        const firstItem = this.first
-        this.first =  firstItem.next
       }
+      const firstNode = this.first
+      this.first = firstNode.next
     }
 
     this.length--
@@ -44,7 +46,7 @@ class Queue {
   }
 }
 
-const myQueue = new Queue()
+const myQueue =  new Queue()
 
 myQueue.enqueue('Joy')
 myQueue.enqueue('Matt')
