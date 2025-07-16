@@ -1,6 +1,6 @@
 class Graph {
   constructor() {
-    this.numberOfNodes = 0
+    this.numberOfNodes = 0;
     this.adjacentList = {}
   }
 
@@ -14,16 +14,16 @@ class Graph {
     this.adjacentList[node2].push(node1)
   }
 
-  showConnection() {
+  showConnections() {
     const allNodes = Object.keys(this.adjacentList)
     for(let node of allNodes) {
-      let nodeConnections = this.adjacentList[node]
-      let connections = ''
+      let nodeConnections = this.adjacentList[node];
+      let connections = '';
+      let vertex;
 
-      for(let vertex of nodeConnections) {
+      for(vertex of nodeConnections) {
         connections += vertex + " "
       }
-
       console.log(node + " ---> " + connections)
     }
   }
@@ -41,11 +41,11 @@ graph.addVertex('6')
 
 graph.addEdge('0', '1')
 graph.addEdge('0', '2')
-graph.addEdge('1', '2')
 graph.addEdge('1', '3')
+graph.addEdge('1', '2')
 graph.addEdge('2', '4')
 graph.addEdge('3', '4')
 graph.addEdge('4', '5')
 graph.addEdge('5', '6')
 
-graph.showConnection()
+graph.showConnections()
