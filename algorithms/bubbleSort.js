@@ -32,7 +32,7 @@ class BubbleSort {
         if(this.data[j] > this.data[j+1]) {
           const temp = this.data[j]
           this.data[j] = this.data[j + 1]
-          this.data[j + 1] = temp;
+          this.data[j + 1] = temp;o
         }                
       }      
     }
