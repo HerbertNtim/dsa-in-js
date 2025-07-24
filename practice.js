@@ -1,51 +1,40 @@
-class Graph {
-  constructor() {
-    this.numberOfNodes = 0
-    this.adjacentList = {}
+const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
+
+function quickSort(array, left, right) {
+  const len = array.length;
+  let pivot;
+  let partitionIndex;
+
+  if(left < right) {
+    pivot = right;
+    partitionIndex = partition(array, pivot, left, right)
+
+    quickSort(array,  left, partitionIndex - 1)
+    quickSort(array, partitionIndex + 1, right)
   }
 
-  addVertex(node) {
-    this.adjacentList[node] = []
-    this.numberOfNodes++
-  }
-
-  addEdge(node1, node2) {
-    this.adjacentList[node1].push(node2)
-    this.adjacentList[node2].push(node1)
-  }
-
-  showConnection() {
-    const allNodes = Object.keys(this.adjacentList)
-    for(let node of allNodes) {
-      let nodeConnections = this.adjacentList[node]
-      let connections = ''
-
-      for(let vertex of nodeConnections) {
-        connections += vertex + " "
-      }
-
-      console.log(node + " ---> " + connections)
-    }
-  }
+  return array;
 }
 
-const graph = new Graph()
+function partition(array, pivot, left, right) {
+  let pivotValue = array[pivot]
+  let partitionIndex = left;
 
-graph.addVertex('0')
-graph.addVertex('1')
-graph.addVertex('2')
-graph.addVertex('3')
-graph.addVertex('4')
-graph.addVertex('5')
-graph.addVertex('6')
+  for(let i = left; i < right; i++) {
+    if(array[i] < pivotValue) {
+      swap(array, i, partitionIndex)
+      partitionIndex++;
+    }
+  }
 
-graph.addEdge('0', '1')
-graph.addEdge('0', '2')
-graph.addEdge('1', '2')
-graph.addEdge('1', '3')
-graph.addEdge('2', '4')
-graph.addEdge('3', '4')
-graph.addEdge('4', '5')
-graph.addEdge('5', '6')
+  swap(array, right, partitionIndex)
+  return partitionIndex;
+}
 
-graph.showConnection()
+function swap(array, firstIndex, secondIndex) {
+  const temp = array[firstIndex]
+  array[firstIndex] = array[secondIndex]
+  array[secondIndex] = temp;
+}
+
+console.log(quickSort(numbers, 0, numbers.length - 1))
